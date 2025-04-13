@@ -1,6 +1,7 @@
 import  express from 'express';
 import cors from 'cors';
 import BookingRoutes from './routes/Bookingroutes.js';
+import PaymentRoutes from './routes/PaymentRoutes.js';
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 
+app.use('/api/payment', PaymentRoutes);
 
 
 app.use('/api',BookingRoutes);

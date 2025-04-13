@@ -10,7 +10,7 @@ router.post('/bookseat',createbookingseat);
 router.get('/getbookedseat',getbookedseat );
 
 // Get all booking for a user
-router.get('/getdataByUserId/:userId',getbookingOfUser);
+router.get('/getdataByUserId/:id',getbookingOfUser);
 
 
 // Cancel booking

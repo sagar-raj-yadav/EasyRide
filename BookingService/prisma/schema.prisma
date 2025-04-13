@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,25 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Booking{
-id        Int      @id @default(autoincrement())
-bus_name String 
-type String
-price Int
-seat Int
-star Int
-start_time DateTime
-end_time DateTime
-duration String
-source_city String
-destination_city String
-distance_km Int
-date DateTime
-status MyStatus @default(CONFIRMED)
-createdAt DateTime @default(now())
+model Booking {
+  id               Int      @id @default(autoincrement())
+  name  String
+  bus_name         String
+  type             String
+  price            Int
+  seat             Int
+  star             Int
+  start_time       DateTime
+  end_time         DateTime
+  duration         String
+  source_city      String
+  destination_city String
+  distance_km      Int
+  date             DateTime
+  status           MyStatus @default(CONFIRMED)
+  createdAt        DateTime @default(now())
 }
-
 
 enum MyStatus {
   CONFIRMED

@@ -1,11 +1,14 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
+
+
+
 
 const createbookingseat = async (req, res) => {
   try {
     const {
-      name, //user name
+      name,
       bus_name,
       type,
       price,
@@ -21,40 +24,40 @@ const createbookingseat = async (req, res) => {
       status,
     } = req.body;
 
-    // Validation: Check for missing required fields
     if (!name) {
       return res.status(400).json({ error: "Name is required" });
     }
 
     const bookingData = {
-      name, //user name
+      name,
       bus_name,
       type,
       price,
       seat,
       star,
-      start_time,
-      end_time,
+      start_time: new Date(start_time),
+      end_time: new Date(end_time),
       duration,
       source_city,
       destination_city,
       distance_km,
-      date,
+      date: new Date(date),
       status,
     };
+    
 
-    // Create a new booking instance
-    const booking = new Prisma.booking.create({
+    const booking = await prisma.booking.create({
       data: bookingData,
     });
 
-    // Send success response
     res.status(201).json({ message: "Bus details saved successfully", booking });
   } catch (error) {
     console.error("Error saving bus details:", error.message);
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 
   
@@ -79,7 +82,7 @@ const getbookedseat = async (req, res) => {
 const getbookingOfUser=async(req,res)=>{
     try{
         const {id}=req.params; //booking id
-        const booking=await Prisma.Booking.findUnique({
+        const booking=await prisma.Booking.findUnique({
           where: {
               id: Number(id), 
             },
@@ -100,7 +103,7 @@ const cancelBooking=async(req,res)=>{
     try{
         const {id}=req.params;
 
-        const booking = await Prisma.Booking.update( {
+        const booking = await prisma.Booking.update( {
           where: { id:Number(id) },
           data: { status: "CANCELED" },
         });
