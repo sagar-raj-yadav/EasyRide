@@ -1,5 +1,5 @@
 import  express from 'express';
-import {createbookingseat,getbookingOfUser ,getbookingOfUser,cancelBooking} from '../controller/BookingController.js';
+import {createbookingseat,getbookedseat ,getbookingOfUser,cancelBooking} from '../controller/BookingController.js';
 const router = express.Router();
 
 
@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/bookseat',createbookingseat);
 
 // Get booking details 
-router.get('/getbookedseat',getbookingOfUser );
+router.get('/getbookedseat',getbookedseat );
 
 // Get all booking for a user
 router.get('/getdataByUserId/:userId',getbookingOfUser);

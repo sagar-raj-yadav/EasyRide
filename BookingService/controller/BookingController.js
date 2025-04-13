@@ -117,4 +117,4 @@ const cancelBooking=async(req,res)=>{
 }
 
 
-export { createbookingseat,getbookingOfUser ,getbookingOfUser,cancelBooking };
+export { createbookingseat,getbookedseat ,getbookingOfUser,cancelBooking };
