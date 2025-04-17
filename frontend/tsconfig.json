@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "noEmitOnError": false, // Allow build even with errors
+    "noImplicitAny": false, // Allow implicit 'any' types
+    "strict": false, // Disables all strict type checking options
+    "esModuleInterop": true,
+    "jsx": "react"
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

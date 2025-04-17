@@ -1,0 +1,87 @@
+.filter-container {
+    margin: 4px 20px;
+    padding: 18px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #838181;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #e64a19;
+  }
+  
+  .range-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .range-container input[type="range"] {
+    flex-grow: 1;
+    accent-color: #ff5722;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .filter-container {
+      padding: 9px;
+      height: 40%;
+      width:90%;
+      justify-self: center;
+    }
+  
+    .filter-section {
+      flex-direction: row;
+      gap: 6px;
+    }
+
+    .button {
+      padding: 1px 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+  
+    .range-container {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    /* Hide the departure time section on small screens */
+    .filter-section:last-child {
+      display: none;
+    }
+  }
+  
+  
