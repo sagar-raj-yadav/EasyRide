@@ -1,0 +1,37 @@
+/* AllBus.css */
+
+.wrapper {
+    display: flex;
+    padding: 20px 10px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background: linear-gradient(to top, #d9e4f5, #b0c4e6);
+
+  }
+  
+  .sidebar {
+    width: 25%;
+    min-width: 250px;
+  }
+  
+  .content {
+    width: 60%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* 👇 Responsive: On smaller screens, stack filter on top */
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      flex-direction: column;
+      padding: 15px;
+    }
+  
+    .sidebar, .content {
+      width: 100%;
+    }
+  }
+  
