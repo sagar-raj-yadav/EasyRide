@@ -29,11 +29,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Redis subscriber setup
 const redisSubscriber = new Redis({
-  host: process.env.REDIS_HOST,
-  port: Number(process.env.REDIS_PORT),
-  username: process.env.REDIS_USERNAME,
-  password: process.env.REDIS_PASSWORD,
-  tls: {}, // if using TLS
+ host:'valkey-164b646d-sagarrajyadav2002-4ccc.d.aivencloud.com',
+  port: 14432,
+  username: 'default',
+  password:  process.env.REDIS_PASSWORD,
+  tls: 'true' ,
 });
 
 redisSubscriber.subscribe('booking_notifications', (err, count) => {
