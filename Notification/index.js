@@ -5,6 +5,8 @@ import http from 'http';
 import mongoose from 'mongoose';
 import Notification from './models/Notification.js';
 import { Server } from 'socket.io';
+import cors from 'cors';
+
 
 dotenv.config();
 
@@ -16,6 +18,9 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   }
 });
+
+app.use(cors());
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
