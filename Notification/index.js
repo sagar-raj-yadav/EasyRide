@@ -2,35 +2,40 @@ import express from 'express';
 import Redis from 'ioredis';
 import dotenv from 'dotenv';
 import http from 'http';
+import mongoose from 'mongoose';
+import Notification from './models/Notification.js';
 import { Server } from 'socket.io';
 
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-
 const io = new Server(server, {
   cors: {
-    origin: "*",  // Ideally, restrict this to your frontend URL in production
+    origin: "*", // change this to your frontend domain in production
     methods: ["GET", "POST"],
-  },
+  }
 });
 
-// Redis connection config
+// MongoDB connection
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log("MongoDB connected");
+}).catch(err => {
+  console.error("MongoDB connection error:", err);
+});
+
+// Redis subscriber setup
 const redisSubscriber = new Redis({
-  host: 'valkey-164b646d-sagarrajyadav2002-4ccc.d.aivencloud.com',
-  port: 14432,
-  username: 'default',
+  host: process.env.REDIS_HOST,
+  port: Number(process.env.REDIS_PORT),
+  username: process.env.REDIS_USERNAME,
   password: process.env.REDIS_PASSWORD,
-  tls: {}, // enable TLS for secure connection, leave empty object as needed
+  tls: {}, // if using TLS
 });
 
-// Listen for Redis errors
-redisSubscriber.on('error', (err) => {
-  console.error("Redis connection error:", err);
-});
-
-// Subscribe to Redis channel
 redisSubscriber.subscribe('booking_notifications', (err, count) => {
   if (err) {
     console.error("Failed to subscribe:", err);
@@ -39,36 +44,38 @@ redisSubscriber.subscribe('booking_notifications', (err, count) => {
   }
 });
 
-// When a message arrives on the Redis channel, emit it via Socket.IO
-redisSubscriber.on('message', (channel, message) => {
+redisSubscriber.on('message', async (channel, message) => {
   if (channel === 'booking_notifications') {
     try {
       const data = JSON.parse(message);
       console.log("Notification Service Received:", data);
 
-      // Emit notification to all connected socket clients
+      // Save notification to MongoDB
+      const notification = new Notification(data);
+      await notification.save();
+
+      // Emit to clients via socket.io
       io.emit('booking_notification', data);
     } catch (error) {
-      console.error("Failed to parse Redis message:", error);
+      console.error("Error processing notification:", error);
     }
   }
 });
 
-// Simple health check endpoint
+// API: get notifications (latest 50)
+app.get('/notifications', async (req, res) => {
+  try {
+    const notifications = await Notification.find().sort({ createdAt: -1 }).limit(50);
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch notifications' });
+  }
+});
+
 app.get('/', (req, res) => {
-  res.json({ message: 'Booking notification service is running' });
+  res.json('Notification service is running');
 });
 
-// Log socket connections from clients
-io.on('connection', (socket) => {
-  console.log("Client connected:", socket.id);
-
-  socket.on('disconnect', () => {
-    console.log("Client disconnected:", socket.id);
-  });
-});
-
-// Use dynamic port for deployment platforms like Render
 const PORT = process.env.PORT || 5008;
 server.listen(PORT, () => {
   console.log(`Notification service running on port ${PORT}`);
