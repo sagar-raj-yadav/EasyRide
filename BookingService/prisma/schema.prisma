@@ -19,7 +19,7 @@ model Booking {
   bus_name         String
   type             String
   price            Int
-  seat             String
+  seat             Int
   star             Int
   start_time       DateTime
   end_time         DateTime

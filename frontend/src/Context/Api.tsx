@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 import axios from "axios";
 
 export interface BusDataType {
@@ -21,24 +21,24 @@ export interface BusDataType {
 }
 
 
-interface BookingData {
-  id: number;
-  name: string;
-  bus_name: string;
-  type: string;
-  price: number;
-  seat: number;
-  star: number;
-  start_time: string;
-  end_time: string;
-  duration: string;
-  source_city: string;
-  destination_city: string;
-  distance_km: number;
-  date: string;
-  status: string;
-  createdAt: string;
-}
+// interface BookingData {
+//   id: number;
+//   name: string;
+//   bus_name: string;
+//   type: string;
+//   price: number;
+//   seat: number;
+//   star: number;
+//   start_time: string;
+//   end_time: string;
+//   duration: string;
+//   source_city: string;
+//   destination_city: string;
+//   distance_km: number;
+//   date: string;
+//   status: string;
+//   createdAt: string;
+// }
 
 
 // Define the context type (for managing state)
@@ -50,8 +50,8 @@ interface ContextType {
   from: string;
   setFrom: (from: string) => void;
   getAllBusData: () => void;
-  bookedData: BookingData[];  // Changed from 'data' to 'bookedData'
-  setBookedData: React.Dispatch<React.SetStateAction<BookingData[]>>; // Changed from 'setData'
+  // bookedData: BookingData[];  // Changed from 'data' to 'bookedData'
+  // setBookedData: React.Dispatch<React.SetStateAction<BookingData[]>>; // Changed from 'setData'
 }
 
 
@@ -87,20 +87,20 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
 
 
   //booked seat
-  const [bookedData,setBookedData  ]=useState<BookingData[]>([])
+  // const [bookedData,setBookedData  ]=useState<BookingData[]>([])
 
-  const fetchBookedData=async()=>{
-      try{
-          const response=await axios.get("https://bus-booking-microservice.onrender.com/api/getbookedseat");
-          setBookedData(response.data);
-      }catch(error){
-          console.log("error in fetching booking data",error);
-      }
-  };
+  // const fetchBookedData=async()=>{
+  //     try{
+  //         const response=await axios.get("https://bus-booking-microservice.onrender.com/api/getbookedseat");
+  //         setBookedData(response.data);
+  //     }catch(error){
+  //         console.log("error in fetching booking data",error);
+  //     }
+  // };
   
-  useEffect(()=>{
-    fetchBookedData();
-  },[])
+  // useEffect(()=>{
+  //   fetchBookedData();
+  // },[])
 
 
   return (
@@ -112,8 +112,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) =>
       from,
       setFrom,
       getAllBusData,
-      bookedData,
-      setBookedData,
+      // bookedData,
+      // setBookedData,
       
     }}>
       {children}

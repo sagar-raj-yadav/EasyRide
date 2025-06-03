@@ -73,9 +73,9 @@ if (filters.selectedType) params.type = filters.selectedType;
 if (filters.selectedRating) params.rating = filters.selectedRating;
 if (filters.selectedTime) params.departure_time = filters.selectedTime;
 
-const res = await axios.get<BusData[]>(`http://54.227.22.130:5000/allbusdata`, {
+// const res = await axios.get<BusData[]>(`http://54.227.22.130:5000/allbusdata`, {
 
-// const res = await axios.get<BusData[]>(`https://questiondata.onrender.com`, {
+const res = await axios.get<BusData[]>(`https://questiondata.onrender.com/allbusdata`, {
   
   params: params,
 });

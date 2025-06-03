@@ -49,21 +49,22 @@ const redisPublisher = new Redis({
     // Optional: Add validation for other required fields here
 
     const bookingData = {
-      name,
-      bus_name,
-      type,
-      price,
-      seat,
-      star,
-      start_time: new Date(start_time),
-      end_time: new Date(end_time),
-      duration,
-      source_city,
-      destination_city,
-      distance_km,
-      date: new Date(date),
-      status,
-    };
+  name,
+  bus_name,
+  type,
+  price: parseInt(price, 10),
+  seat: parseInt(seat, 10),
+  star,
+  start_time: new Date(start_time),
+  end_time: new Date(end_time),
+  duration,
+  source_city,
+  destination_city,
+  distance_km,
+  date: new Date(date),
+  status,
+};
+
 
     const booking = await prisma.booking.create({
       data: bookingData,
@@ -91,9 +92,6 @@ const redisPublisher = new Redis({
 
 
 
-  
-
-
 const getbookedseat = async (req, res) => {
   try {
     const booking = await prisma.booking.findMany();
@@ -102,7 +100,8 @@ const getbookedseat = async (req, res) => {
       return res.status(404).json({ message: "No booking data found" });
     }
 
-    res.json(booking);
+  res.json({message:"booking successfull",booking});
+
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -122,7 +121,7 @@ const getbookingOfUser=async(req,res)=>{
         if(!booking){
             return res.status(404).json({message:"booking data not found by userid"});
         }
-        res.json(booking);
+        res.json({message:"booking successfull",booking});
 
     }catch (error) {
         res.status(400).json({ error: error.message });

@@ -1,10 +1,52 @@
-import { useContext } from 'react';
-import { context } from '../Context/Api';
+import { useEffect ,useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+
+interface BookingData {
+  id: number;
+  name: string;
+  bus_name: string;
+  type: string;
+  price: number;
+  seat: number;
+  star: number;
+  start_time: string;
+  end_time: string;
+  duration: string;
+  source_city: string;
+  destination_city: string;
+  distance_km: number;
+  date: string;
+  status: string;
+  createdAt: string;
+}
+
+
 
 const Booking = () => {
-  const { bookedData } = useContext(context);
+  // const { bookedData } = useContext(context);
+
+  //booked seat
+  const [bookedData,setBookedData  ]=useState<BookingData[]>([])
+
+  const fetchBookedData=async()=>{
+      try{
+          const response=await axios.get("https://bus-booking-microservice.onrender.com/api/getbookedseat");
+          setBookedData(response.data);
+      }catch(error){
+          console.log("error in fetching booking data",error);
+      }
+  };
+  
+  useEffect(()=>{
+    fetchBookedData();
+  },[])
+
   const token = localStorage.getItem('token');
+
+  console.log(bookedData || "no booking");
+
 
   return (
     <div style={styles.scrollContainer}>

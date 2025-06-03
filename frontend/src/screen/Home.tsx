@@ -79,8 +79,8 @@ const BusSearchForm = () => {
               const value = e.target.value;
               setFrom(value);
               try {
-                const res = await axios.get(`http://54.227.22.130:5000/allbusdata?from=${value}`);
-                // const res = await axios.get(`https://questiondata.onrender.com/allbusdata?from=${value}`);
+                // const res = await axios.get(`http://54.227.22.130:5000/allbusdata?from=${value}`);
+                const res = await axios.get(`https://questiondata.onrender.com/allbusdata?from=${value}`);
                 setAllBusData(res.data);
               } catch (error) {
                 console.error("Error fetching 'from'", error);
