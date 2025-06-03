@@ -104,7 +104,7 @@ This architecture ensures **high scalability**, **loose coupling** of services, 
 
 # 1. Clone the repo
 git clone https://github.com/sagar-raj-yadav/EasyRide.git
-cd easyride
+
 
 ### Run Services
 1. Clone the repo  
