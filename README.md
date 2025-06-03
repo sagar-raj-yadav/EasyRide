@@ -77,3 +77,21 @@ React → API Gateway → Booking Service → Redis Pub → Notification Service
 
 This setup improves scalability, maintains loose coupling between services, and enhances user engagement through real-time updates.
 
+
+---
+
+## Setup & Run
+
+### Prerequisites
+
+- Node.js
+- Docker
+- PostgreSQL
+- Redis (Aiven or local)
+
+### Run Services
+
+1. Clone the repo  
+2. Setup `.env` files for each service with correct DB, Redis, and API keys  
+3. Run services individually (User, Booking, Bus, Notification, API Gateway) using `npm start` or `docker-compose`  
+4. Access the frontend and test real-time notifications on bookings  
