@@ -106,6 +106,14 @@ This architecture ensures **high scalability**, **loose coupling** of services, 
 git clone https://github.com/yourusername/easyride.git
 cd easyride
 
+### Run Services
+1. Clone the repo  
+2. Setup .env files for each service with correct DB, Redis, and API keys  
+3. Run services individually (User, Booking, Bus, Notification, API Gateway) using npm start or docker-compose  
+4. Access the frontend and test real-time notifications on bookings  
+
+
+
 # 2. Configure .env files for each microservice with DB, Redis, and API credentials
 
 # 3. Start each service individually or use docker-compose
