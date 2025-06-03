@@ -124,5 +124,5 @@ cd notification-service && npm install && npm start
 cd api-gateway && npm install && npm start
 
 # 4. Run frontend
-cd frontend && npm install && npm start
+cd frontend && npm install && npm run dev
 
