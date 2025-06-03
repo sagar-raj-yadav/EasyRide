@@ -2,7 +2,6 @@
 
 A scalable, full-stack microservices-based bus booking platform that provides a seamless and secure experience for users. Built using modern technologies and optimized for performance and maintainability.
 
-[🔴 Live Demo](#) &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;[📂 GitHub Repository](#)
 
 ---
 
