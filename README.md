@@ -1,55 +1,49 @@
 # 🚍 EasyRide
 
-A scalable, full-stack microservices-based bus booking platform that provides a seamless and secure experience for users. Built using modern technologies and optimized for performance and maintainability.
+A scalable and secure microservices-based **Bus Booking System** that provides real-time notifications, seamless user experience, and cloud deployment using modern technologies like Docker, AWS, Redis (Aiven), Prisma, and TypeScript.
 
 
----
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React.js, TypeScript
-- **Backend:** Node.js, Express.js, TypeScript
+- **Frontend:** React, TypeScript
+- **Backend:** Node.js, Express.js
 - **Database:** PostgreSQL (via Prisma ORM)
-- **Authentication:** JWT, Bcrypt
-- **Payment Gateway:** Razorpay
-- **Microservices:** User Service, Booking Service, Bus Service, Notification Service, API Gateway
-- **Messaging:** Redis Pub/Sub
-- **Real-time Communication:** Socket.IO
-- **Containerization:** Docker
-- **Deployment:** AWS EC2
+- **Auth:** JWT, Bcrypt
+- **Deployment:** AWS EC2, Docker
+- **Real-Time Communication:** Redis (Aiven), Socket.IO
+- **API Gateway:** Express-based service router
 
 ---
 
-## 🧩 Architecture Overview
+## 🧩 Microservices Overview
 
-EasyRide follows a microservices architecture consisting of the following services:
-
-- **User Service:** Handles user registration, login, and profile management.
-- **Bus Service:** Manages bus listings, schedules, and availability.
-- **Booking Service:** Manages seat bookings, cancellations, and payment integration.
-- **Notification Service:** Listens to booking events via Redis and notifies users in real time via WebSocket.
-- **API Gateway:** Routes requests to the appropriate service with unified authentication and logging.
-
-Each service communicates via REST APIs, and inter-service events (e.g., new booking) are handled via Redis Pub/Sub.
+| Service          | Description                                       |
+|------------------|---------------------------------------------------|
+| **API Gateway**   | Routes all requests to respective services        |
+| **User Service**  | User login, registration, JWT auth               |
+| **Bus Service**   | Manages bus listings, timings, routes            |
+| **Booking Service** | Books tickets, handles Razorpay payments        |
+| **Notification Service** | Sends real-time alerts via Redis + Socket.IO |
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-- 🔐 **JWT & Bcrypt Authentication:** Secure login and signup with encrypted passwords.
-- 🔄 **Microservices Communication:** REST APIs with Redis-based message brokering for decoupled communication.
-- 🛎️ **Real-Time Notifications:** Socket.IO-based instant updates to the frontend for new bookings.
-- ⚙️ **Debounced Search:** Smooth and efficient searching for buses with reduced API calls.
-- 📦 **Prisma ORM:** Type-safe interaction with PostgreSQL.
-- 🧾 **Razorpay Integration:** Secure and seamless payment for bookings.
-- ☁️ **Deployed on AWS EC2:** Ensures high uptime, reliability, and scalability.
+- ✅ JWT & Bcrypt-based Secure Login/Signup
+- ✅ Razorpay Integrated Payment Flow
+- ✅ Microservice Architecture with API Gateway
+- ✅ Redis Pub/Sub for Notifications
+- ✅ Real-time Alerts via Socket.IO
+- ✅ Debounced Search for Performance Boost
+- ✅ Dockerized and AWS EC2 Hosted
+- ✅ Prisma + PostgreSQL for DB Management
 
 ---
 
-## 🔔 Redis + Socket.IO Notification Flow
+## 🔄 Booking to Notification Flow
 
-1. **Booking Service** publishes a message to the `booking_notifications` Redis channel whenever a new booking is made.
-2. **Notification Service** (Redis subscriber) listens to the channel, stores the notification in MongoDB, and emits it to connected clients using Socket.IO.
-3. **Frontend** (React) listens via WebSocket and displays the real-time booking notification.
+### ⚙️ Architecture
 
-📬 Sample notification:  
+```text
+React → API Gateway → Booking Service → Redis Pub → Notification Service → Socket.IO → React
