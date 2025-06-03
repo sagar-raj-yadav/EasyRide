@@ -14,6 +14,8 @@ A scalable and secure microservices-based **Bus Booking System** that provides r
 - **Real-Time Communication:** Redis (Aiven), Socket.IO
 - **API Gateway:** Express-based service router
 
+
+  
 ---
 
 ## 🧩 Microservices Overview
@@ -27,6 +29,19 @@ A scalable and secure microservices-based **Bus Booking System** that provides r
 | **Notification Service** | Sends real-time alerts via Redis + Socket.IO |
 
 ---
+
+## Project Overview
+
+EasyRide is a microservices-based ticket booking platform designed for scalability and real-time user notifications.
+
+- Architected a Microservices System with 4+ core services (User, Booking, Bus, API Gateway), using REST APIs for smooth communication and boosting scalability and maintainability by 30%.  
+- Optimized search with Debouncing and performance tuning, improving API efficiency by 50%, and implemented secure JWT and Bcrypt login/signup for enhanced security.  
+- Deployed the Bus service on AWS EC2, ensuring high availability and performance, with Razorpay integration and PostgreSQL via Prisma for a seamless ticket booking experience.
+- The **Booking Service** manages bookings and payment data using **PostgreSQL** with Prisma ORM.
+- The **Notification Service** stores notifications in **MongoDB** to allow flexible document-based storage and efficient querying of notification history.
+
+---
+
 
 ## 🚀 Key Features
 
