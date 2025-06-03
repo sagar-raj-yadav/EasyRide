@@ -1,6 +1,6 @@
 # 🚍 EasyRide
 
-**A scalable and secure microservices-based Bus Booking System** that provides real-time notifications, seamless user experience, and cloud deployment using modern technologies like Docker, AWS, Redis (Aiven), Prisma, and TypeScript.
+**EasyRide is a scalable and secure microservices-based Bus Booking System designed to deliver a seamless user experience. It supports real-time notifications for instant updates using Redis and Socket.IO. The system leverages modern cloud deployment with Docker and AWS EC2 for high availability. Databases like PostgreSQL (via Prisma) and MongoDB ensure robust and flexible data management. Built with TypeScript and React, it offers a powerful and maintainable codebase.
 
 ---
 
