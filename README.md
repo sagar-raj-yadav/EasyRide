@@ -60,7 +60,7 @@ EasyRide is a microservices-based ticket booking platform designed for scalabili
 
 ### ⚙️ Architecture
 
-```text
+
 React → API Gateway → Booking Service → Redis Pub → Notification Service → Socket.IO → React
 
 
